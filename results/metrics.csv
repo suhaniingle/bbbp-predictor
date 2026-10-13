@@ -1,0 +1,4 @@
+features,test_auc_fixed_scaffold,threshold_from_valid,test_recall_blocked,test_recall_permeable,cv_auc_random,cv_auc_scaffold
+fingerprint,0.701,0.7,0.341,0.886,0.929 +/- 0.013,0.901 +/- 0.021
+descriptors,0.694,0.6,0.319,0.895,0.894 +/- 0.013,0.869 +/- 0.025
+both,0.751,0.7,0.418,0.848,0.938 +/- 0.013,0.911 +/- 0.024
