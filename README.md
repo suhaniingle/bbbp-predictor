@@ -43,28 +43,49 @@ feature sets are within noise. The threshold was tuned on a validation set that 
 the test set, and results come from one scaffold split. With more time I would repeat the pipeline
 over several seeds and splits, try a clustering-based split, and compare against a graph neural network.
 
+## Project structure
+```
+src/data.py        load and clean the data
+src/split.py       scaffold split
+src/features.py    fingerprints and descriptors
+src/train.py       models, cross-validation, metrics (writes results/metrics.csv)
+src/demo.py        prediction card for any molecule
+notebooks/         exploration and baseline experiments
+results/           metrics table and figures
+```
+
 ## Run it
+From the project root:
 ```
 pip install -r requirements.txt
 python -m src.train
 ```
 The dataset downloads automatically on first run (`data/` is git-ignored).
 
-## Citations
-- Wu et al., MoleculeNet: a benchmark for molecular machine learning, Chem. Sci. 2018, 9, 513-530.
-- Martins et al., A Bayesian approach to in silico blood-brain barrier penetration modeling,
-  J. Chem. Inf. Model. 2012, 52, 1686-1697.
-
-  ## Try it on any molecule 
-
-  ```
+## Try it on any molecule
+```
 python -m src.demo "<SMILES>" results/my_molecule.png
 ```
-
-The first run trains the model on all 1,955 molecules and caches it locally (`models/` is git-ignored). The card shows the predicted probability, the molecule, key properties against rough CNS-drug guidelines, and whether the molecule was in the training data.
+The first run trains the model on all 1,955 molecules and caches it locally (`models/` is git-ignored).
+The card shows the predicted probability, the molecule, key properties against rough CNS-drug guidelines,
+and whether the molecule was in the training data.
 
 | Nicotine (not in training data) | L-DOPA (not in training data) |
 |---|---|
 | ![nicotine](results/demo_nicotine.png) | ![L-DOPA](results/demo_ldopa.png) |
 
-Nicotine is predicted permeable (99%), which matches its known action in the brain. L-DOPA is predicted blocked (31%), but it reaches the brain through an amino acid transporter (LAT1), which a model built only on structure and simple properties cannot know. Two examples illustrate the output; they are not a validation. The scaffold-split results above are the real evidence, including the model's weakness on non-penetrant molecules.
+Nicotine is predicted permeable (99%), which matches its known action in the brain. L-DOPA is predicted
+blocked (31%), but it reaches the brain through an amino acid transporter (LAT1), which a model built
+only on structure and simple properties cannot know. Two examples illustrate the output; they are not
+a validation. The scaffold-split results above are the real evidence, including the model's weakness
+on non-penetrant molecules.
+
+## Citations
+- Wu, Z.; Ramsundar, B.; Feinberg, E. N.; Gomes, J.; Geniesse, C.; Pappu, A. S.; Leswing, K.; Pande, V.
+  MoleculeNet: a benchmark for molecular machine learning. Chem. Sci. 2018, 9 (2), 513-530.
+  DOI: 10.1039/C7SC02664A.
+- Martins, I. F.; Teixeira, A. L.; Pinheiro, L.; Falcao, A. O. A Bayesian approach to in silico
+  blood-brain barrier penetration modeling. J. Chem. Inf. Model. 2012, 52 (6), 1686-1697.
+  (The paper describes 1,970 curated molecules; the MoleculeNet BBBP copy used here has 2,039
+  before cleaning, so counts differ.)
+
