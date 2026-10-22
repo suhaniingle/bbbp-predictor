@@ -67,4 +67,4 @@ The first run trains the model on all 1,955 molecules and caches it locally (`mo
 |---|---|
 | ![nicotine](results/demo_nicotine.png) | ![L-DOPA](results/demo_ldopa.png) |
 
-Nicotine is predicted permeable (99%), which matches its known action in the brain. L-DOPA is predicted blocked (31%), but it reaches the brain through an active transporter, which a model built only on structure and simple properties cannot know. Two examples illustrate the output; they are not a validation. The scaffold-split results above are the real evidence, including the model's weakness on non-penetrant molecules.
+Nicotine is predicted permeable (99%), which matches its known action in the brain. L-DOPA is predicted blocked (31%), but it reaches the brain through an amino acid transporter (LAT1), which a model built only on structure and simple properties cannot know. Two examples illustrate the output; they are not a validation. The scaffold-split results above are the real evidence, including the model's weakness on non-penetrant molecules.
