@@ -54,3 +54,17 @@ The dataset downloads automatically on first run (`data/` is git-ignored).
 - Wu et al., MoleculeNet: a benchmark for molecular machine learning, Chem. Sci. 2018, 9, 513-530.
 - Martins et al., A Bayesian approach to in silico blood-brain barrier penetration modeling,
   J. Chem. Inf. Model. 2012, 52, 1686-1697.
+
+  ## Try it on any molecule 
+
+  ```
+python -m src.demo "<SMILES>" results/my_molecule.png
+```
+
+The first run trains the model on all 1,955 molecules and caches it locally (`models/` is git-ignored). The card shows the predicted probability, the molecule, key properties against rough CNS-drug guidelines, and whether the molecule was in the training data.
+
+| Nicotine (not in training data) | L-DOPA (not in training data) |
+|---|---|
+| ![nicotine](results/demo_nicotine.png) | ![L-DOPA](results/demo_ldopa.png) |
+
+Nicotine is predicted permeable (99%), which matches its known action in the brain. L-DOPA is predicted blocked (31%), but it reaches the brain through an active transporter, which a model built only on structure and simple properties cannot know. Two examples illustrate the output; they are not a validation. The scaffold-split results above are the real evidence, including the model's weakness on non-penetrant molecules.
