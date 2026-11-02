@@ -89,3 +89,5 @@ on non-penetrant molecules.
   (The paper describes 1,970 curated molecules; the MoleculeNet BBBP copy used here has 2,039
   before cleaning, so counts differ.)
 
+## Related work
+BBBP with MoleculeNet's fixed scaffold split has been studied before, for example Sakiyama, H.; Fukuda, M.; Okuno, T. Prediction of Blood-Brain Barrier Penetration (BBBP) Based on Molecular Descriptors of the Free-Form and In-Blood-Form Datasets. Molecules 2021, 26 (24), 7428. DOI: 10.3390/molecules26247428. This project is an independent re-implementation with different cleaning and features, so scores are not directly comparable.
